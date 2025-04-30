@@ -1,4 +1,4 @@
-name: Build sonic-vs.img
+name: Build SONiC target
 
 on:
   workflow_dispatch:
@@ -46,3 +46,9 @@ jobs:
       - name: Display results
         run: |
           testflinger results ${{ steps.submit-job.outputs.id }}"
+
+      - name: Upload vs image
+        uses: actions/upload-artifact@master
+        with:
+          name: sonic-vs.img.gz
+          path: target/sonic-vs.img.gz
