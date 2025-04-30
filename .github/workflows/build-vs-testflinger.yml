@@ -12,10 +12,8 @@ on:
     branches: [ tests/vs-t0 ]
 
 jobs:
-  build:
-
-    runs-on: [self-hosted, jammy, x64, xlarge]
-
+  test-workflow:
+    runs-on: [self-hosted, x64, xlarge]
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
@@ -36,14 +34,11 @@ jobs:
         pip3 install --user j2cli --break-system-packages
         pip3 install --user jinjanator --break-system-packages
 
-    - name: Run make init
-      run: make init
-
-    - name: Run make configure
-      run: make configure PLATFORM=vs 
-      
-    - name: Run make all
-      run: make target/sonic-vs.img.gz
+    - name: List host configure
+      run: |
+        lscpu
+        df -h
+        lsmem
 
   testflinger-build:
     runs-on: [self-hosted, testflinger]
