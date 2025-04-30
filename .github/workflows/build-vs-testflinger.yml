@@ -44,6 +44,14 @@ jobs:
     #   run: |
     #     sudo snap install testflinger-cli
     #     testflinger-cli list-queues
+    - name: Run make init
+      run: make init
+
+    - name: Run make configure
+      run: make configure PLATFORM=vs 
+      
+    - name: Run make all
+      run: make SONIC_BUILD_JOBS=4 target/sonic-vs.img.gz
 
   testflinger-build:
     runs-on: [self-hosted, testflinger]
