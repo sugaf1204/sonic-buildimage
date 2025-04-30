@@ -13,7 +13,7 @@ on:
 
 jobs:
   test-workflow:
-    runs-on: [self-hosted, x64, xlarge]
+    runs-on: [self-hosted, x64, two-xlarge]
     steps:
     - name: Checkout branch
       uses: actions/checkout@v3
@@ -28,17 +28,22 @@ jobs:
     - name: Verify Python version
       run: python --version
 
-    - name: install j2cli
-      run: |
-        pip3 install --user j2cli
-        pip3 install --user j2cli --break-system-packages
-        pip3 install --user jinjanator --break-system-packages
+    # - name: install j2cli
+    #   run: |
+    #     pip3 install --user j2cli
+    #     pip3 install --user j2cli --break-system-packages
+    #     pip3 install --user jinjanator --break-system-packages
 
     - name: List host configure
       run: |
         lscpu
         df -h
         lsmem
+
+    - name: Check testflinger connectivity
+      run: |
+        sudo snap install testflinger-cli
+        testflinger-cli list-queues
 
   testflinger-build:
     runs-on: [self-hosted, testflinger]
