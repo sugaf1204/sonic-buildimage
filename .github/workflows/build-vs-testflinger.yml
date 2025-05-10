@@ -24,7 +24,7 @@ jobs:
         with:
           poll: true
           job: |
-            job_queue: krunch # TODO(yan.jiang): dynamically find available queue?
+            job_queue: torchtusk # TODO(yan.jiang): dynamically find available queue?
             provision_data:
               distro: jammy
             test_data:
