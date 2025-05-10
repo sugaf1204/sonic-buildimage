@@ -48,7 +48,7 @@ jobs:
 
       - name: Display results
         run: |
-          testflinger results ${{ steps.submit-job.outputs.id }}"
+          testflinger results ${{ steps.submit-job.outputs.id }}
 
       - name: Upload vs image
         uses: actions/upload-artifact@master
